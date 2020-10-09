@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import DayPage from "../views/Day"
 
+ 
+
 const routes = [
   {
     path: '/',
