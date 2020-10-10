@@ -1,3 +1,9 @@
+const path = require('path');
+
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
 module.exports = {
   devServer: {
     overlay: {
@@ -16,5 +22,12 @@ module.exports = {
       }
     }
   },
-  lintOnSave: false
+  lintOnSave: false,
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': resolve('src')
+      }
+    }
+  }
 }
