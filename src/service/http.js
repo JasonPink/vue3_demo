@@ -28,7 +28,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data;
-    if(res.code ! === 200) { //响应失败
+    if(res.code !== 200) { //响应失败
        return Promise.reject(res)
     }else{
        return Promise.resolve(res)
@@ -38,5 +38,35 @@ service.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+
+function axiosPost(options) {
+  axios({
+    url: options.url,
+    method: 'post',
+    header: {
+      "Content-Type": "application/x-www-from-urlencoded"
+    },
+    data: qs.stringify({
+      ...options.data,
+      key: baseConfig.JUHE_KEY
+    })
+  }).then(res => {
+    options.success(res.data)
+  }).catch(err => {
+    options.error(err)
+  })
+}
+
+function axiosGet(options) {
+  axios(options.url+"&key=" + baseConfig.JUHE_KEY).then(res => {
+    options.sucess(res.data)
+  }).catch(err => {
+    options.error(err)
+  })
+}
+
+export {
+  axiosPost
+}
 
 export default service

@@ -1,9 +1,5 @@
-import request from '@/service/http'
+import calendar from "@/api/calendar"
 
-export function getDayData(query) {
-  return request({
-    url: '/calendar/day',
-    method: 'get',
-    params: query
-  })
+export default {
+  calendar
 }
